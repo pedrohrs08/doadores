@@ -11,7 +11,7 @@ class DonorsController < ApplicationController
 	def names
 		donors = Donor.all 
 		donors_name = { names: [] }
-		donors_name[:names] = donors.map {|donor| donor.name }
+		donors_name[:names] = donors.map {|donor| { id: donor.id, name: donor.name } }
 		respond_to do |format|
 			format.json { render :json => donors_name }
 		end 
