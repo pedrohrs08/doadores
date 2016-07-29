@@ -8,6 +8,15 @@ class DonorsController < ApplicationController
 	    end
 	end
 
+	def names
+		donors = Donor.all 
+		donors_name = { names: [] }
+		donors_name[:names] = donors.map {|donor| donor.name }
+		respond_to do |format|
+			format.json { render :json => donors_name }
+		end 
+	end
+
 	def show
 		@donor = Donor.find(params[:id])
 		respond_to do |format|
